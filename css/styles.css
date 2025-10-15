@@ -11006,7 +11006,7 @@ header.masthead .masthead-content {
   left: 0;
   transition: all 0.2s ease-in-out;
   opacity: 0;
-  background-color: rgba(26, 188, 156, 0.9);
+  background-color: rgba(167, 210, 252, 0.9); /*썸네일 마우스 호버 시 색상*/
 }
 .portfolio .portfolio-item .portfolio-item-caption:hover {
   opacity: 1;
@@ -11024,6 +11024,7 @@ header.masthead .masthead-content {
   font-size: 2.25rem;
   line-height: 2rem;
 }
+
 @media (min-width: 992px) {
   .portfolio-modal .portfolio-modal-title {
     font-size: 3rem;
@@ -11044,6 +11045,7 @@ header.masthead .masthead-content {
 
 
 
+/*추가*/
 /* === EB Garamond 적용 영역 === */
 
 /* 네비게이션 (상단 메뉴) */
@@ -11085,57 +11087,37 @@ header.masthead .masthead-content {
 }
 
 
-
-
-/* ===== Fix: 정사각형 이미지와 +오버레이 영역 완전 일치 ===== */
-:root { --stamp-pad: 16px; } /* 프레임과 이미지 사이 간격 */
-
-#portfolio .portfolio-item{
+/* 포트폴리오 아이템: 기본 박스만 유지 (프레임/패딩 제거) */
+#portfolio .portfolio-item {
   position: relative;
   box-sizing: border-box;
-  padding: var(--stamp-pad);          /* 프레임과 이미지가 겹치지 않게 */
-  background: #fff;
+  /* padding, 배경, 프레임 관련 속성 모두 제거 */
   border-radius: 0.5rem;
 }
 
-/* 우표 PNG 프레임 */
-#portfolio .portfolio-item::before{
-  content:"";
-  position:absolute;
-  inset:0;                            /* 아이템 전체 테두리 */
-  background:url("assets/img/stampborder.png") center/cover no-repeat;
-  pointer-events:none;
-  z-index:1;
+/* 정사각형 썸네일: 1:1 유지 + 중앙 크롭 */
+#portfolio .portfolio-item > img.img-fluid {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* 1:1 유지 */
+  object-fit: cover;     /* 중앙 크롭 */
+  border-radius: .25rem;
+  position: relative;
+  z-index: 0;
 }
 
-/* 정사각형 썸네일 */
-#portfolio .portfolio-item > img.img-fluid{
-  display:block;
-  width:100%;
-  aspect-ratio:1/1;                   /* 1:1 유지 */
-  object-fit:cover;                   /* 중앙 크롭 */
-  border-radius:.25rem;
-  position:relative;
-  z-index:0;
+/* +오버레이: 이미지 영역과 정확히 동일 크기로 겹치기 */
+#portfolio .portfolio-item .portfolio-item-caption {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+
+  /* Bootstrap 유틸(w-100, h-100) 무시 */
+  width: auto !important;
+  height: auto !important;
+
+  z-index: 2;
+  border-radius: .25rem; /* 이미지 둥근 모서리와 동일 */
 }
-
-/* ★ 핵심: +오버레이가 이미지 박스와 '정확히' 동일 크기가 되도록 강제 */
-#portfolio .portfolio-item .portfolio-item-caption{
-  position:absolute !important;
-  top:var(--stamp-pad) !important;
-  left:var(--stamp-pad) !important;
-  right:var(--stamp-pad) !important;
-  bottom:var(--stamp-pad) !important;
-
-  /* Bootstrap 유틸(w-100, h-100)이 덮어쓰지 못하도록 무효화 */
-  width:auto !important;
-  height:auto !important;
-
-  z-index:2;                          /* 프레임 위에 오도록 */
-  border-radius:.25rem;               /* 이미지 둥근 모서리와 동일 */
-}
-
-
-
-
-
