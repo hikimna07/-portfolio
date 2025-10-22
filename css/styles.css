@@ -11072,6 +11072,7 @@ header.masthead .masthead-content {
 #portfolio .page-section-heading {
   font-family: "EB Garamond", serif;
   font-weight: 600; /* SemiBold */
+  padding-bottom: 36px;
 }
 
 /* About 섹션 제목 */
