@@ -126,7 +126,7 @@ h6, .h6 {
 }
 
 p {
-  margin-top: 0;
+  margin-top: 10px;
   margin-bottom: 1rem;
 }
 
@@ -7391,7 +7391,7 @@ textarea.form-control-lg {
 
 .bg-primary {
   /* background-color: #1abc9c !important; */
-  background: url(../assets/img/eyes_banner.jpg) no-repeat center center; /*메인배너 이미지*/
+  background: url(../assets/img/ny_banner.jpg) no-repeat center center; /*메인배너 이미지*/
 }
 
 .bg-secondary {
