@@ -11004,7 +11004,7 @@ header.masthead .masthead-content {
 
 
 
-
+/*⭕ 나영 CSS 추가 */
 .portfolio .portfolio-item {
   cursor: pointer;
   position: relative;
@@ -11072,12 +11072,11 @@ header.masthead .masthead-content {
   font-weight: 600; /* SemiBold */
 }
 
-/* 메인 배너 큰 제목 */
+/* 메인 배너 큰 제목 
 .masthead .masthead-heading {
   font-family: "EB Garamond", serif;
-  font-weight: 600; /* SemiBold */
-}
-
+  font-weight: 600; /* SemiBold 
+}*/
 /* 메인 배너 서브제목
 .masthead .masthead-subheading {
   font-family: "EB Garamond", serif;
@@ -11137,4 +11136,26 @@ header.masthead .masthead-content {
 
   z-index: 2;
   border-radius: .25rem; /* 이미지 둥근 모서리와 동일 */
+}
+
+
+
+/*📂 자기소개 / 임의로 사진 넣어둠*/
+.fullpage-bg {
+  width: 100%;
+  min-height: 100dvh;
+  height: 100dvh;
+  background-image: url("/assets/img/ny_intro_R.jpg"); /* 이미지 경로 변경 */
+  background-size: cover;         /* 꽉 채우기 */
+  background-position: center;    /* 중앙 정렬 */
+  background-repeat: no-repeat;
+}
+
+.fullpage-bg__inner {
+  height: 100%;
+  display: grid;
+  place-items: center;            /* 가운데 정렬 (옵션) */
+  padding: 2rem;
+  color: #fff;                    /* 밝은 사진이면 조정 */
+  text-align: center;
 }
