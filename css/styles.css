@@ -11134,11 +11134,9 @@ header.masthead .masthead-content {
   /* Bootstrap 유틸(w-100, h-100) 무시 */
   width: auto !important;
   height: auto !important;
-
   z-index: 2;
   border-radius: .25rem; /* 이미지 둥근 모서리와 동일 */
 }
-
 
 
 /*📂 자기소개 / 임의로 사진 넣어둠*/
@@ -11147,17 +11145,17 @@ header.masthead .masthead-content {
   min-height: 100dvh;
   height: 100dvh;
   background-image: url("/assets/img/ny_intro_R.jpg"); /* 이미지 경로 변경 */
-  background-size: cover;         /* 꽉 채우기 */
-  background-position: center;    /* 중앙 정렬 */
+  background-size: cover; /* 꽉 채우기 */
+  background-position: center;/* 중앙 정렬 */
   background-repeat: no-repeat;
 }
 
 .fullpage-bg__inner {
   height: 100%;
   display: grid;
-  place-items: center;            /* 가운데 정렬 (옵션) */
+  place-items: center; /* 가운데 정렬 (옵션) */
   padding: 2rem;
-  color: #fff;                    /* 밝은 사진이면 조정 */
+  color: #fff;
   text-align: center;
 }
 
