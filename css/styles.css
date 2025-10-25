@@ -11140,25 +11140,158 @@ header.masthead .masthead-content {
 
 
 /*📂 자기소개 / 임의로 사진 넣어둠*/
+/*
 .fullpage-bg {
   width: 100%;
   min-height: 100dvh;
   height: 100dvh;
-  background-image: url("/assets/img/ny_intro_R.jpg"); /* 이미지 경로 변경 */
+  background-image: url("/assets/img/ny_intro_R.jpg");
   background-size: cover; /* 꽉 채우기 */
-  background-position: center;/* 중앙 정렬 */
-  background-repeat: no-repeat;
+ /* background-position: center;/* 중앙 정렬 */
+ /* background-repeat: no-repeat;
 }
 
 .fullpage-bg__inner {
   height: 100%;
   display: grid;
   place-items: center; /* 가운데 정렬 (옵션) */
-  padding: 2rem;
+/*  padding: 2rem;
   color: #fff;
   text-align: center;
 }
+*/
 
+
+
+:root{
+  --intro-accent:#4676ff;
+  --intro-text:#111;
+  --intro-muted:#6b7280;
+  --intro-gap:56px;           /* 좌우 컬럼 간격 */
+}
+
+/* 한 화면(100vh) + 배경 이미지 꽉 채우기 */
+.intro-section{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: url("../assets/img/ny_intro_back.jpg") center/cover no-repeat; /* ← ../ 추가 */
+  padding: 48px 0;
+}
+
+.intro-container{
+  position: relative;         /* (오버레이가 없다면 필수는 아니지만 안전) */
+  max-width:1160px;
+  margin:0 auto;
+  padding:0 24px;
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr; /* 왼쪽 넓게 */
+  gap:var(--intro-gap);
+  align-items:start;
+}
+
+/* Left */
+.intro-left{
+  position:relative;       /* 왼쪽 하단 아이콘 포지셔닝 기준 */
+  padding-bottom:90px;     /* 아이콘 자리 확보 */
+}
+
+.intro-quote{
+  font-family:'Montserrat',system-ui,-apple-system,'Noto Sans KR',sans-serif;
+  font-weight:700;
+  font-size:clamp(36px,5vw,60px);   /* 필요시 58~62px로 미세조정 */
+  line-height:1.06;
+  letter-spacing:-0.02em;
+  color:var(--intro-text);
+  margin:0 0 18px;
+}
+
+.intro-desc{
+  font-family:'Lato','Noto Sans KR',sans-serif;
+  font-size:15px;
+  line-height:1.7;
+  color:var(--intro-muted);
+  max-width:520px;         /* 문단 폭 */
+  margin:0 0 32px;
+}
+
+/* Tools (이미지 아이콘을 왼쪽 하단 고정) */
+.tool-logos{
+  position:absolute;
+  left:0;
+  bottom:0;
+  display:flex;
+  gap:16px;                /* 아이콘 간격 */
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.tool-logos li img{
+  height:44px;             /* 아이콘 높이 */
+  width:auto;
+  display:block;
+}
+/* "Skills" 라벨 */
+.tool-logos::before{
+  content:"Skills";
+  position:absolute;
+  left:0;
+  bottom:52px;             /* 아이콘 위 여백 (44px +8px) */
+  font-size:14px;
+  line-height:1;
+  color:#b7bdc7;
+  letter-spacing:.2px;
+}
+
+/* 텍스트 뱃지 버전은 숨김 (이미지 사용) */
+.tool-badges{ display:none !important; }
+
+/* Right */
+.intro-right{ padding-top:6px; }
+.intro-block + .intro-block{ margin-top:22px; }
+.intro-title{
+  font-family:'Montserrat','Noto Sans KR',sans-serif;
+  font-size:18px;
+  font-weight:700;
+  color:var(--intro-accent);
+  margin:0 0 6px;
+}
+.intro-list{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.intro-list li{
+  font-size:14px;
+  line-height:1.7;
+  color:#1f2937;
+}
+
+/* 이메일 파란색 제거(본문색 상속) */
+.intro-list a{
+  color:inherit;
+  text-decoration:none;
+}
+.intro-list a:hover{
+  text-decoration:underline;
+}
+
+/* Responsive */
+@media (max-width:992px){
+  .intro-section{ padding:28px 0; }
+  .intro-container{
+    grid-template-columns:1fr;
+    gap:32px;
+    max-width:720px;
+  }
+  .intro-right{ padding-top:0; }
+  .intro-quote{ font-size:clamp(32px,6vw,48px); }
+  .intro-desc{ max-width:100%; margin-bottom:24px; }
+  .intro-left{ padding-bottom:80px; }
+  .tool-logos li img{ height:38px; }
+  .tool-logos::before{ bottom:46px; }
+}
 
 
 
