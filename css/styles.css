@@ -7391,7 +7391,7 @@ textarea.form-control-lg {
 }
 
 .bg-primary {
-  background: url(../assets/img/ny_banner.jpg) no-repeat center; /*메인배너 이미지*/
+  background: url(../assets/img/ny_banner04.jpg) no-repeat center; /*메인배너 이미지*/
 }
 
 .bg-secondary {
@@ -11167,40 +11167,42 @@ header.masthead .masthead-content {
   --intro-accent:#4676ff;
   --intro-text:#111;
   --intro-muted:#6b7280;
-  --intro-gap:56px;           /* 좌우 컬럼 간격 */
+  --intro-gap:56px;           /* 좌우 컬럼 기본 간격 */
 }
 
-/* 한 화면(100vh) + 배경 이미지 꽉 채우기 */
+/* 한 화면(100vh) + 배경 이미지는 그대로 */
 .intro-section{
   position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  background: url("../assets/img/ny_intro_back.jpg") center/cover no-repeat; /* ← ../ 추가 */
-  padding: 48px 0;
+  align-items: flex-start;                      /* 상단에서 시작 */
+  background: url("../assets/img/ny_intro_back.jpg") center/cover no-repeat;
+  padding: 96px 0 48px;                         /* 상단 여백 */
 }
 
 .intro-container{
-  position: relative;         /* (오버레이가 없다면 필수는 아니지만 안전) */
+  position: relative;
   max-width:1160px;
   margin:0 auto;
   padding:0 24px;
   display:grid;
-  grid-template-columns:1.1fr 0.9fr; /* 왼쪽 넓게 */
+  grid-template-columns:1.1fr 0.9fr;           /* 왼쪽 더 넓게 */
   gap:var(--intro-gap);
-  align-items:start;
+  align-items: stretch;                         /* 두 컬럼 높이 맞춤 */
 }
 
 /* Left */
 .intro-left{
-  position:relative;       /* 왼쪽 하단 아이콘 포지셔닝 기준 */
-  padding-bottom:90px;     /* 아이콘 자리 확보 */
+  position: static;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
 }
 
 .intro-quote{
   font-family:'Montserrat',system-ui,-apple-system,'Noto Sans KR',sans-serif;
   font-weight:700;
-  font-size:clamp(36px,5vw,60px);   /* 필요시 58~62px로 미세조정 */
+  font-size:clamp(36px,5vw,60px);
   line-height:1.06;
   letter-spacing:-0.02em;
   color:var(--intro-text);
@@ -11212,43 +11214,39 @@ header.masthead .masthead-content {
   font-size:15px;
   line-height:1.7;
   color:var(--intro-muted);
-  max-width:520px;         /* 문단 폭 */
+  max-width:520px;
   margin:0 0 32px;
 }
 
-/* Tools (이미지 아이콘을 왼쪽 하단 고정) */
+/* Tools (왼쪽 칼럼 바닥 정렬) */
 .tool-logos{
-  position:absolute;
-  left:0;
-  bottom:0;
+  position: static;
   display:flex;
-  gap:16px;                /* 아이콘 간격 */
+  gap:16px;
   list-style:none;
   margin:0;
   padding:0;
+  margin-top:auto;                              /* 칼럼 바닥으로 밀착 */
 }
 .tool-logos li img{
-  height:44px;             /* 아이콘 높이 */
+  height:44px;
   width:auto;
   display:block;
 }
-/* "Skills" 라벨 */
 .tool-logos::before{
   content:"Skills";
-  position:absolute;
-  left:0;
-  bottom:52px;             /* 아이콘 위 여백 (44px +8px) */
+  display:block;
+  margin-bottom:8px;
   font-size:14px;
   line-height:1;
   color:#b7bdc7;
   letter-spacing:.2px;
 }
 
-/* 텍스트 뱃지 버전은 숨김 (이미지 사용) */
-.tool-badges{ display:none !important; }
-
 /* Right */
-.intro-right{ padding-top:6px; }
+.intro-right{
+  padding-top: clamp(24px, 5vh, 96px);          /* 오른쪽만 살짝 내려줌 */
+}
 .intro-block + .intro-block{ margin-top:22px; }
 .intro-title{
   font-family:'Montserrat','Noto Sans KR',sans-serif;
@@ -11267,7 +11265,6 @@ header.masthead .masthead-content {
   line-height:1.7;
   color:#1f2937;
 }
-
 /* 이메일 파란색 제거(본문색 상속) */
 .intro-list a{
   color:inherit;
@@ -11277,9 +11274,24 @@ header.masthead .masthead-content {
   text-decoration:underline;
 }
 
+/* --- Education의 첫 번째 항목을 한 줄 고정 --- */
+.intro-right .intro-block:nth-of-type(2) .intro-list li:first-child{
+  white-space: nowrap;        /* 줄바꿈 금지 */
+}
+
+/* 데스크톱: 컬럼 간격 더 넓게 */
+@media (min-width:1100px){
+  .intro-container{
+    gap: clamp(80px, 9vw, 200px);               /* 80~200px */
+  }
+}
+
 /* Responsive */
 @media (max-width:992px){
-  .intro-section{ padding:28px 0; }
+  .intro-section{
+    padding: 28px 0;
+    align-items: stretch;
+  }
   .intro-container{
     grid-template-columns:1fr;
     gap:32px;
@@ -11288,10 +11300,8 @@ header.masthead .masthead-content {
   .intro-right{ padding-top:0; }
   .intro-quote{ font-size:clamp(32px,6vw,48px); }
   .intro-desc{ max-width:100%; margin-bottom:24px; }
-  .intro-left{ padding-bottom:80px; }
-  .tool-logos li img{ height:38px; }
-  .tool-logos::before{ bottom:46px; }
+  .tool-logos{ margin-top:0; }
 }
 
-
-
+/* 텍스트 뱃지 버전은 숨김 (이미지 사용하므로) */
+.tool-badges{ display:none !important; }
