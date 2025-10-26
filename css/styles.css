@@ -11162,12 +11162,16 @@ header.masthead .masthead-content {
 */
 
 
-
+/*📌 Intro Section */
 :root{
-  --intro-accent:#4676ff;
+  /* ===== 색상 토큰 분리 ===== */
+  --intro-title:#4676ff;     /* 섹션 부제목(예: Education, Certificate) */
+  --year-accent:#111111;     /* 연도 색상 (예: 2025) */
+
+  /* 기존 토큰 */
   --intro-text:#111;
   --intro-muted:#6b7280;
-  --intro-gap:56px;           /* 좌우 컬럼 기본 간격 */
+  --intro-gap:56px;          /* 좌우 컬럼 기본 간격 */
 }
 
 /* 한 화면(100vh) + 배경 이미지는 그대로 */
@@ -11252,7 +11256,7 @@ header.masthead .masthead-content {
   font-family:'Montserrat','Noto Sans KR',sans-serif;
   font-size:18px;
   font-weight:700;
-  color:var(--intro-accent);
+  color:var(--intro-title);                     /* ← 부제목 색상 */
   margin:0 0 6px;
 }
 .intro-list{
@@ -11274,10 +11278,31 @@ header.masthead .masthead-content {
   text-decoration:underline;
 }
 
-/* --- Education의 첫 번째 항목을 한 줄 고정 --- */
-.intro-right .intro-block:nth-of-type(2) .intro-list li:first-child{
-  white-space: nowrap;        /* 줄바꿈 금지 */
+/* ===========================
+   연도 하이라이트 & 간격
+   =========================== */
+.year-list li{
+  display: grid;
+  grid-template-columns: auto 1fr; /* [연도] [내용] 두 칸 */
+  align-items: start;
+  column-gap: 12px;               /* ← 연도와 본문 간격 (필요하면 14~20px로) */
 }
+.year-list .yr{
+  color:var(--year-accent);       /* ← 연도 색상(부제목과 분리) */
+  font-weight:700;
+  white-space:nowrap;
+  min-width:3.2ch;                /* 4자리 숫자 폭 고정 → 세로정렬 깔끔 */
+  text-align:left;
+}
+/* ✅ 중요: 모든 항목은 내용이 길어지면 정상 줄바꿈(말줄임표 없음) */
+.year-list .ytext{
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* (이전 버전에서 말줄임표 강제했던 규칙 제거됨) */
+/* .edu-block .year-list li:first-child .ytext { … } 삭제 */
 
 /* 데스크톱: 컬럼 간격 더 넓게 */
 @media (min-width:1100px){
@@ -11301,6 +11326,9 @@ header.masthead .masthead-content {
   .intro-quote{ font-size:clamp(32px,6vw,48px); }
   .intro-desc{ max-width:100%; margin-bottom:24px; }
   .tool-logos{ margin-top:0; }
+
+  /* 모바일에서는 간격 조금만 줄이기 */
+  .year-list li{ column-gap:10px; }
 }
 
 /* 텍스트 뱃지 버전은 숨김 (이미지 사용하므로) */
